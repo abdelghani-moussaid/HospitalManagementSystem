@@ -7,6 +7,7 @@ namespace HospitalManagementSystem.Models
     {
         [Key]
         public int Id { get; set; }
+
         public DateTime AppointmentDate { get; set; }
         [ForeignKey("Patient")]
         public int PatientId { get; set;}

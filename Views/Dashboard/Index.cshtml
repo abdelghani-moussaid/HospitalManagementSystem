@@ -1,0 +1,97 @@
+﻿@{
+    var totalPatients = (int)ViewData["TotalPatients"];
+    var totalDoctors = (int)ViewData["TotalDoctors"];
+    var uniqueSpecialties = (int)ViewData["UniqueSpecialties"];
+    var todaysAppointments = (List<Appointment>)ViewData["TodaysAppointments"];
+    var filteredAppointments = (List<Appointment>)ViewData["FilteredAppointments"];
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Dashboard</h1>
+
+    <div class="row mb-4">
+        <!-- Statistics Cards -->
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Patients</h5>
+                    <p class="card-text">@totalPatients</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Total Doctors</h5>
+                    <p class="card-text">@totalDoctors</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card text-white bg-info">
+                <div class="card-body">
+                    <h5 class="card-title">Departments</h5>
+                    <p class="card-text">@uniqueSpecialties</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <!-- Today's Appointments -->
+        <h2 class="mb-3">Today's Appointments</h2>
+        @if (todaysAppointments.Any())
+        {
+            <ul class="list-group">
+                @foreach (var appointment in todaysAppointments)
+                {
+                    <li class="list-group-item">
+                        <strong>Patient:</strong> @appointment.Patient.Name -
+                        <strong>Doctor:</strong> @appointment.Doctor.Name -
+                        <strong>Date:</strong> @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm tt")
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">
+                No appointments scheduled for today.
+            </div>
+        }
+    </div>
+
+
+    <div>
+        <!-- Filter Appointments -->
+        <h2 class="mb-3">Filter Appointments</h2>
+        <form method="get" class="mb-4">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+
+        @if (filteredAppointments.Any())
+        {
+            <h3 class="mb-3">Filtered Appointments</h3>
+            <ul class="list-group">
+                @foreach (var appointment in filteredAppointments)
+                {
+                    <li class="list-group-item">
+                        <strong>Patient:</strong> @appointment.Patient.Name -
+                        <strong>Doctor:</strong> @appointment.Doctor.Name -
+                        <strong>Date:</strong> @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm tt")
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

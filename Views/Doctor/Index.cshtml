@@ -1,0 +1,31 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Doctors List";
+}
+
+<div class="mb-3">
+    <a href="@Url.Action("Register", "Doctor")" class="btn btn-primary">Register New Doctor</a>
+</div>
+
+<h1>Doctors List</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var doctor in Model)
+        {
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="images/doctor.jpg" class="card-img-top" alt="Doctor Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@doctor.Name</h5>
+                        <p class="card-text">Specialty: @doctor.Specialty</p>
+                        <a href="@Url.Action("Details", "Doctor", new { id = doctor.Id })" class="btn btn-primary">View Details</a>
+                        <a href="@Url.Action("Edit", "Doctor", new { id = doctor.Id })" class="btn btn-secondary">Edit</a>
+                        <a href="@Url.Action("Delete", "Doctor", new { id = doctor.Id })" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

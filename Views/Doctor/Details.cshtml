@@ -1,0 +1,40 @@
+﻿@model HospitalManagementSystem.Models.Doctor
+
+@{
+    ViewData["Title"] = "Doctor Details";
+    var appointments = ViewData["Appointments"] as IEnumerable<HospitalManagementSystem.Models.Appointment>;
+}
+
+<h1>@Model.Name</h1>
+<p><strong>Specialty:</strong> @Model.Specialty</p>
+
+<h2>Appointments</h2>
+
+<form method="get" action="@Url.Action("Details", new { id = Model.Id })">
+    <label for="startDate">Start Date:</label>
+    <input type="date" name="startDate" id="startDate" />
+
+    <label for="endDate">End Date:</label>
+    <input type="date" name="endDate" id="endDate" />
+
+    <button type="submit">Filter</button>
+</form>
+
+@if (appointments != null && appointments.Any())
+{
+    <div class="appointments">
+        @foreach (var appointment in appointments)
+        {
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Appointment with @appointment.Patient.Name</h5>
+                    <p class="card-text">Date: @appointment.AppointmentDate.ToShortDateString()</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No appointments found.</p>
+}

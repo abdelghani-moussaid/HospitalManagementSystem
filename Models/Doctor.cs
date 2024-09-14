@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace HospitalManagementSystem.Models
 {
@@ -9,6 +10,7 @@ namespace HospitalManagementSystem.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Specialty { get; set; }
-        public ICollection<Appointment> Appointments { get; set; }
+        [JsonIgnore]
+        public ICollection<Appointment> Appointments { get; set; } = [];
     }
 }

@@ -1,0 +1,30 @@
+﻿@model HospitalManagementSystem.Models.AppointmentDTO
+
+@{
+    ViewData["Title"] = "Create Appointment";
+}
+
+<h1>Create Appointment</h1>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="AppointmentDate" class="control-label"></label>
+        <input asp-for="AppointmentDate" class="form-control" />
+        <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DoctorId" class="control-label"></label>
+        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors"></select>
+        <span asp-validation-for="DoctorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PatientId" class="control-label"></label>
+        <select asp-for="PatientId" class="form-control" asp-items="ViewBag.Patients"></select>
+        <span asp-validation-for="PatientId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+<a asp-action="Index">Back to List</a>

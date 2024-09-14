@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.Patient>
+
+@{
+    ViewData["Title"] = "Patient List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <a href="@Url.Action("Register", "Patient")" class="btn btn-primary">Register New Patient</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.Name</td>
+                    <td>@patient.DateOfBirth.ToShortDateString()</td>
+                    <td>@patient.Address</td>
+                    <td>
+                        <a href="@Url.Action("Details", "Patient", new { id = patient.Id })" class="btn btn-info btn-sm">Details</a>
+                        <a href="@Url.Action("Edit", "Patient", new { id = patient.Id })" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="@Url.Action("Delete", "Patient", new { id = patient.Id })" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No patients available.</td>
+            </tr>
+        }
+    </tbody>
+</table>
