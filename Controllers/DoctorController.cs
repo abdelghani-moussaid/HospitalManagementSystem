@@ -122,6 +122,7 @@ namespace HospitalManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var appointments = doctor.Appointments.AsQueryable();
 
             // Filter appointments if dates are provided
             if (startDate.HasValue && endDate.HasValue)
@@ -129,6 +130,14 @@ namespace HospitalManagementSystem.Controllers
                 doctor.Appointments = [.. doctor.Appointments
                     .Where(a => a.AppointmentDate >= startDate.Value && a.AppointmentDate <= endDate.Value)
                     .ToList()
+                    .OrderBy(a => a.AppointmentDate)];
+            } 
+            else
+            {
+                // Default to upcoming appointments starting from today
+                var today = DateTime.Today;
+                doctor.Appointments = [.. appointments
+                    .Where(a => a.AppointmentDate >= today)
                     .OrderBy(a => a.AppointmentDate)];
             }
 

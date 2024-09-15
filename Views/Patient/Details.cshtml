@@ -31,7 +31,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Appointment with @appointment.Doctor.Name</h5>
-                    <p class="card-text">Date: @appointment.AppointmentDate.ToShortDateString()</p>
+                    <p class="card-text">Date: @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm")</p>
                 </div>
             </div>
         }
@@ -41,3 +41,7 @@ else
 {
     <p>No appointments found.</p>
 }
+
+
+
+<a asp-action="Index">Back to List</a>

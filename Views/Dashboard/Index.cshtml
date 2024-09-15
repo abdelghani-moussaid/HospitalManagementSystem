@@ -42,16 +42,21 @@
         <h2 class="mb-3">Today's Appointments</h2>
         @if (todaysAppointments.Any())
         {
-            <ul class="list-group">
+            <div class="appointments">
                 @foreach (var appointment in todaysAppointments)
                 {
-                    <li class="list-group-item">
-                        <strong>Patient:</strong> @appointment.Patient.Name -
-                        <strong>Doctor:</strong> @appointment.Doctor.Name -
-                        <strong>Date:</strong> @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm tt")
-                    </li>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <strong>Doctor:</strong> @appointment.Doctor.Name
+                            </h5>
+
+                            <p class="card-text">Appointment with @appointment.Patient.Name
+                            <p class="card-text">Date: @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm")</p>
+                        </div>
+                    </div>
                 }
-            </ul>
+            </div>
         }
         else
         {
@@ -66,12 +71,12 @@
         <!-- Filter Appointments -->
         <h2 class="mb-3">Filter Appointments</h2>
         <form method="get" class="mb-4">
-            <div class="form-row">
-                <div class="form-group col-md-6">
+            <div class="row">
+                <div class="col-md-4 mb-3">
                     <label for="startDate">Start Date</label>
                     <input type="date" id="startDate" name="startDate" class="form-control" />
                 </div>
-                <div class="form-group col-md-6">
+                <div class="col-md-4 mb-3">
                     <label for="endDate">End Date</label>
                     <input type="date" id="endDate" name="endDate" class="form-control" />
                 </div>
@@ -82,16 +87,21 @@
         @if (filteredAppointments.Any())
         {
             <h3 class="mb-3">Filtered Appointments</h3>
-            <ul class="list-group">
+            <div class="appointments">
                 @foreach (var appointment in filteredAppointments)
                 {
-                    <li class="list-group-item">
-                        <strong>Patient:</strong> @appointment.Patient.Name -
-                        <strong>Doctor:</strong> @appointment.Doctor.Name -
-                        <strong>Date:</strong> @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm tt")
-                    </li>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <strong>Doctor:</strong> @appointment.Doctor.Name
+                            </h5>
+
+                            <p class="card-text">Appointment with @appointment.Patient.Name
+                            <p class="card-text">Date: @appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm")</p>
+                        </div>
+                    </div>
                 }
-            </ul>
+            </div>
         }
     </div>
 </div>

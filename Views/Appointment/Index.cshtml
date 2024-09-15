@@ -57,7 +57,7 @@
                 <tr>
                     <td>@appointment.Doctor.Name</td>
                     <td>@appointment.Patient.Name</td>
-                    <td>@appointment.AppointmentDate</td>
+                        <td>@appointment.AppointmentDate.ToString("MMM dd, yyyy hh:mm")</td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = appointment.Id }, new { @class = "btn btn-warning btn-sm" })
                         @Html.ActionLink("Delete", "Delete", new { id = appointment.Id }, new { @class = "btn btn-danger btn-sm" })

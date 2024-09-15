@@ -2,6 +2,7 @@
 using HospitalManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace HospitalManagementSystem.Controllers
 {
@@ -124,6 +125,7 @@ namespace HospitalManagementSystem.Controllers
             {
                 return NotFound();
             }
+            var appointments = patient.Appointments.AsQueryable();
 
             // Filter appointments if dates are provided
             if (startDate.HasValue && endDate.HasValue)
@@ -133,7 +135,14 @@ namespace HospitalManagementSystem.Controllers
                     .ToList()
                     .OrderBy(a => a.AppointmentDate)];
             }
-
+            else
+            {
+                // Default to upcoming appointments starting from today
+                var today = DateTime.Today;
+                patient.Appointments = [.. appointments
+                    .Where(a => a.AppointmentDate >= today)
+                    .OrderBy(a => a.AppointmentDate)];
+            }
             ViewData["Patient"] = patient;
             ViewData["Appointments"] = patient.Appointments;
 
