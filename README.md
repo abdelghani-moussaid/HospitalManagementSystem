@@ -1,4 +1,4 @@
-# HospitalManagementSystem - CareHub 
+# CareHub - HospitalManagementSystem  
 
 [![CareHub](https://img.shields.io/badge/Live_Demo-View_on_Azure-blue)](https://carehub-dra2crd2bgdjhng3.southafricanorth-01.azurewebsites.net)
 
