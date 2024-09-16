@@ -63,7 +63,7 @@ Feel free to fork the repository and submit pull requests. For any issues or fea
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
 
 ## Contact
 
